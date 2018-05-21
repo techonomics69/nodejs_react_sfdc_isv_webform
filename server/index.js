@@ -21,6 +21,11 @@ if (cluster.isMaster) {
 } else {
   const app = express();
 
+  global.exit = function exit(code, msg) { console.log(`ERROR: ${msg}`); process.exit(code || 1); }
+  global.missing = function missing(variable) { exit(1, `${variable} environment variable required.`); }
+
+  let { org, force } = require('./salesforce');
+
   // Priority serve any static files.
   app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
