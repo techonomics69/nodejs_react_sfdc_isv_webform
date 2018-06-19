@@ -40,13 +40,13 @@ if (cluster.isMaster) {
   app.get('/newTrial', function(request, response) {
     if(!org.authenticated) { return; }
 
-    if (!request.trial.q) {
+    if (!request.jsonTrial) {
       response.status(400).send('Missing query parameter.');
       console.log('error: missing param');
       return;
     }
 
-    console.log('q= '+request.query.q);
+    console.log('q= '+request.jsonTrial);
 
     //let trial = force.createSObject('SignupRequest');
     //trial.set('firstName', tweet.text);
