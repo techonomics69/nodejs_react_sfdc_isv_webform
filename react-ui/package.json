@@ -5,6 +5,7 @@
   "dependencies": {
     "@salesforce-ux/design-system": "^2.6.0",
     "@salesforce/design-system-react": "^0.8.14",
+    "jquery": "^3.3.1",
     "package-name": "^0.1.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",

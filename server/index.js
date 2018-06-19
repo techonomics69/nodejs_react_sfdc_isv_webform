@@ -1,3 +1,4 @@
+const httpClient = require('request');
 const express = require('express');
 const path = require('path');
 const cluster = require('cluster');
@@ -35,10 +36,43 @@ if (cluster.isMaster) {
     res.send('{"message":"Hello from the custom server!"}');
   });
 
+  // Create a Trial.
+  app.get('/newTrial', function(request, response) {
+    if(!org.authenticated) { return; }
+
+    if (!request.trial.q) {
+      response.status(400).send('Missing query parameter.');
+      console.log('error: missing param');
+      return;
+    }
+
+    console.log('q= '+request.query.q);
+
+    //let trial = force.createSObject('SignupRequest');
+    //trial.set('firstName', tweet.text);
+    //trial.set('username__c', tweet.user.screen_name);
+    //trial.set('tweet_url__c', link);
+
+    //org.insert({ sobject: trial }, (err) => {
+    //    if(err) {
+    //        console.error(err);
+    //        process.exit(1);
+    //    }
+    //    else {
+    //        console.log('Tweet published from', tweet.user.screen_name);
+    //    }
+    //})
+
+    
+    response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
+  });
+
+
   // All remaining requests return the React app, so it can handle routing.
   app.get('*', function(request, response) {
     response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
   });
+  
 
   app.listen(PORT, function () {
     console.error(`Node cluster worker ${process.pid}: listening on port ${PORT}`);

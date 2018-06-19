@@ -6,6 +6,9 @@ import '../App.css';
 import {COUNTRIES} from '../data/combodata';
 import {PTYPES} from '../data/combodata';
 import {CPREFS} from '../data/combodata';
+import {Trial} from './Trial';
+
+var $ = require('jquery');
 
 
 
@@ -14,19 +17,25 @@ class Home extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       isOpen: false,
-      firstName: null,
-      lastName: null,
-      email: null,
-      company: null,
-      phone: null,
-      uname: null,
-      countryValue: '',
-      prefValue: '',
-      phoneValue: '',
+      
       redirect: false,
+
+      firstName: '',
+	      lastName: '',
+	      email: '',
+	      company: '',
+	      phone: '',
+	      uname: '',
+	      countryValue: '',
+	      prefValue: '',
+	      phoneValue: '',
+
     };
+
+    let newTrial = new Trial('','','','','','','','','');
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,6 +51,7 @@ class Home extends React.Component {
     this.setState({
       [name]: value,
     });
+    //Object.keys(this.state.trial).map(i => this.setState({ [i]: value }))
 
     console.log('state:'+name+' value: '+value);
   }
@@ -51,8 +61,27 @@ class Home extends React.Component {
 
     this.setState({
       isOpen: false,
-      redirect: true,
     });
+
+    //console.log('trail=',trial);
+
+    let myTrial = new Trial(this.state.firstName, 
+    							 this.state.lastName, 
+    							 this.state.email, 
+    							 this.state.company, 
+    							 this.state.phone, 
+    							 this.state.uname, 
+    							 this.state.countryValue, 
+    							 this.state.prefValue, 
+    							 this.state.phoneValue);
+
+    if (!myTrial){
+    	return;
+    }
+
+    console.log('myTrial= ',myTrial);
+
+    this.props.onExecuteQuery({newTrial: myTrial});
 
   }
 
