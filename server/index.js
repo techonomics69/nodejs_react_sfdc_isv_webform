@@ -40,9 +40,7 @@ if (cluster.isMaster) {
   app.get('/newTrial', function(request, response) {
     if(!org.authenticated) { return; }
 
-    console.log('q= ',request);
-
-    console.log('q1= ',request.body);
+    console.log('q= ',request.headers);
 
 
     if (!request.body) {
