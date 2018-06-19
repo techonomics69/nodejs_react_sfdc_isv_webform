@@ -42,6 +42,12 @@ if (cluster.isMaster) {
 
     console.log('q= ',request.headers);
 
+    console.log('q1= ',request.rawHeaders);
+
+    console.log('q2= ',request.rawTrailers);
+
+    console.log('q3= ',request.url);
+
 
     if (!request.body) {
       response.status(400).send('Missing query parameter.');
@@ -50,6 +56,8 @@ if (cluster.isMaster) {
     }
 
     console.log('q= ',request.body);
+
+    console.log('q1= ',request.body);
 
     //let trial = force.createSObject('SignupRequest');
     //trial.set('firstName', tweet.text);
