@@ -40,6 +40,11 @@ if (cluster.isMaster) {
   app.get('/newTrial', function(request, response) {
     if(!org.authenticated) { return; }
 
+    console.log('q= ',request);
+
+    console.log('q1= ',request.body);
+
+
     if (!request.body) {
       response.status(400).send('Missing query parameter.');
       console.log('error: missing param');
