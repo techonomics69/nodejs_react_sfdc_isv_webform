@@ -22,11 +22,12 @@ class App extends React.Component {
       //event.preventDefault();
       // Send SOQL query to server
       console.log('trial= ',data.newTrial)
+      var jsonTrial = JSON.stringify(data.newTrial);
       $.ajax({
         url: '/newTrial',
         dataType: 'json',
         cache: false,
-        data: {q: data.trial},
+        data: jsonTrial,
         success: function(data) {
           this.setState({result: JSON.stringify(data, null, 2)});
         }.bind(this),
