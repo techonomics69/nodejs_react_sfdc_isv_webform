@@ -44,7 +44,7 @@ if (cluster.isMaster) {
 
     console.log('q3= ',request.url);
 
-    var myT = url.parse(request.url, true).query;
+    var myT = JSON.parse(url.parse(request.url, true).query);
 
     console.log('myT= ',myT);
 
