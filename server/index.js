@@ -44,11 +44,8 @@ if (cluster.isMaster) {
 
     console.log('q3= ',request.url);
 
-    var myUrl = new URL('https://webform-react-app.herokuapp.com'+request.url);
 
-    console.log('origin= ',myUrl.origin);
-
-    var myParams = url.parse(request.url, true).query;
+    var myParams = url.parse(request.url).query;
 
     console.log('myT= ',myParams);
 
