@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
+const url = require('url');
 
 const PORT = process.env.PORT || 5000;
 
@@ -40,13 +41,12 @@ if (cluster.isMaster) {
   app.get('/newTrial', function(request, response) {
     if(!org.authenticated) { return; }
 
-    console.log('q= ',request.headers);
-
-    console.log('q1= ',request.rawHeaders);
-
-    console.log('q2= ',request.rawTrailers);
 
     console.log('q3= ',request.url);
+
+    var myT = url.parse(request.url, true).query;
+
+    console.log('myT= ',myT);
 
 
     if (!request.body) {
