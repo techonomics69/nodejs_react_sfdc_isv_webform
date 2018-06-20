@@ -46,7 +46,7 @@ if (cluster.isMaster) {
 
     var myUrl = new URL(request.url);
 
-    console.log('origin= ',myUrl.origin;
+    console.log('origin= ',myUrl.origin);
 
     var myParams = url.parse(request.url, true).query;
 
