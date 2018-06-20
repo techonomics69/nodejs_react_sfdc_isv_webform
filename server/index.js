@@ -44,12 +44,15 @@ if (cluster.isMaster) {
 
     console.log('q3= ',request.url);
 
-    var myT = JSON.parse(url.parse(request.url, true).query);
+    var myParams = url.parse(request.url, true, true).query;
 
-    console.log('myT= ',myT);
+    console.log('myT= ',myParams);
 
 
-    if (!request.body) {
+
+    console.log('firstName= ',myParams)
+
+    if (!myParams) {
       response.status(400).send('Missing query parameter.');
       console.log('error: missing param');
       return;
