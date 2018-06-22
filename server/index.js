@@ -73,7 +73,7 @@ if (cluster.isMaster) {
     trial.set('Company', request.body.company);
     //trial.set('Phone', request.body.phone);
     trial.set('Username', request.body.uname);
-    trial.set('Country', request.body.countryValue);
+    trial.set('Country', request.body.countryCode);
     //trial.set('ContactPreference', request.body.prefValue);
     //trial.set('PhonePreference', request.body.phoneValue);
     trial.set('TemplateId', templateId);
