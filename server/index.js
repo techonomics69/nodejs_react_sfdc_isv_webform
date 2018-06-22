@@ -7,6 +7,7 @@ const url = require('url');
 const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 5000;
+const templateId = process.env.TRIALFORCE_TEMPLATE_ID;
 
 // Multi-process to utilize all CPU cores.
 if (cluster.isMaster) {
@@ -57,47 +58,41 @@ if (cluster.isMaster) {
 
     console.log('body= ',request.body);
 
-    console.log('firstName= ',request.body.firstName);
 
-    var myParams = " ";
-
-    var myIndex = request.url.lastIndexOf("&");
-
-    if (myIndex != -1) {
-      myParams = request.url.substring(0,myIndex);
-      const newUrl = new URL(myParams);
-      console.log('substring= ',newUrl);
-      //myParams = url.parse(myParams,true).query;
-      myParams = newUrl.search;
-    }
-
-    console.log('myT= ',myParams);
-
-
-    if (!myParams) {
+    if (!request.body) {
       response.status(400).send('Missing query parameter.');
       console.log('error: missing param');
       return;
     }
 
 
-    //let trial = force.createSObject('SignupRequest');
-    //trial.set('firstName', tweet.text);
-    //trial.set('username__c', tweet.user.screen_name);
-    //trial.set('tweet_url__c', link);
+    let trial = force.createSObject('SignupRequest');
+    trial.set('FirstName', request.body.firstName);
+    trial.set('LastName', request.body.lastName);
+    trial.set('SignupEmail', request.body.email);
+    trial.set('Company', request.body.company);
+    //trial.set('Phone', request.body.phone);
+    trial.set('Username', request.body.uname);
+    trial.set('Country', request.body.countryValue);
+    //trial.set('ContactPreference', request.body.prefValue);
+    //trial.set('PhonePreference', request.body.phoneValue);
+    trial.set('TemplateId', templateId);
 
-    //org.insert({ sobject: trial }, (err) => {
-    //    if(err) {
-    //        console.error(err);
-    //        process.exit(1);
-    //    }
-    //    else {
-    //        console.log('Tweet published from', tweet.user.screen_name);
-    //    }
-    //})
+    trial.set('PreferredLanguage', 'en_US');
+
+    org.insert({ sobject: trial }, (err) => {
+        if(err) {
+           console.error(err);
+            process.exit(1);
+        }
+        else {
+            console.log('Trial Inserted');
+        }
+    })
 
     
     response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
+    request.destroy();
   });
 
 
