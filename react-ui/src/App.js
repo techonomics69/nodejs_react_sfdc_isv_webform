@@ -4,6 +4,8 @@ import logo from './logo.svg';
 import './App.css';
 import { Button, Modal, IconSettings, Input, Combobox } from '@salesforce/design-system-react';
 import Home from './containers/Home';
+import TrialForm from './containers/TrialForm';
+import TrialHeader from './containers/TrialHeader';
 import TrialSubmitted from './TrialSubmittedComponent';
 import $ from 'jquery'; 
 
@@ -43,6 +45,8 @@ class App extends React.Component {
       return (
         <div>
           <div className="slds-m-around--xx-large">
+            <TrialHeader/>
+            <TrialForm onExecuteQuery={this.handleQueryExecution} />
             <Home onExecuteQuery={this.handleQueryExecution} />
             { this.state.result ?
               <TrialSubmitted />
