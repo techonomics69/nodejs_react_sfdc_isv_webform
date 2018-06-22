@@ -29,6 +29,11 @@ if (cluster.isMaster) {
 
   let { org, force } = require('./salesforce');
 
+
+  app.listen(PORT, function () {
+    console.error(`Node cluster worker ${process.pid}: listening on port ${PORT}`);
+  });
+
   // Priority serve any static files.
   app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
@@ -52,7 +57,9 @@ if (cluster.isMaster) {
 
     console.log('body= ',request.body);
 
-    console.log('parsed= ',JSON.stringify(request.body));
+    console.log('query= ',request.query);
+
+    console.log('trial= ',request.query.trial);
 
 
     var myParams = " ";
@@ -103,7 +110,4 @@ if (cluster.isMaster) {
   });
   
 
-  app.listen(PORT, function () {
-    console.error(`Node cluster worker ${process.pid}: listening on port ${PORT}`);
-  });
 }
