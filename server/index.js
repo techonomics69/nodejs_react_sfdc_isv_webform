@@ -51,14 +51,11 @@ if (cluster.isMaster) {
 
     if (myIndex != -1) {
       myParams = request.url.substring(0,myIndex);
-      myParams = url.parse(myParams).query;
+      myParams = url.parse(myParams,true).query;
     }
 
     console.log('myT= ',myParams);
 
-    var trialData = url.parse(myParams,true);
-
-    console.log('myParams= ',trialData)
 
     if (!myParams) {
       response.status(400).send('Missing query parameter.');
