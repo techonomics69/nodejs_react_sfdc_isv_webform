@@ -26,14 +26,14 @@ class App extends React.Component {
       var jsonTrial = JSON.stringify(data.newTrial);
 
       console.log('jsonTrial=', jsonTrial);
-      
+
       $.ajax({
         url: '/newTrial',
         dataType: 'json',
         cache: false,
         data: jsonTrial,
         success: function(data) {
-          this.setState({result: JSON.stringify(data, null, 2)});
+          this.setState({result: JSON.stringify(jsonTrial, null, 2)});
         }.bind(this),
         error: function(xhr, status, err) {
           this.setState({result: 'Failed to create trial.'});
