@@ -57,6 +57,8 @@ if (cluster.isMaster) {
 
     console.log('body= ',request.body);
 
+    console.log('firstName= ',request.body.firstName);
+
     var myParams = " ";
 
     var myIndex = request.url.lastIndexOf("&");

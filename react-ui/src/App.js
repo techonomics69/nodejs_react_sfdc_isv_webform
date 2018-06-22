@@ -23,10 +23,6 @@ class App extends React.Component {
       // Send SOQL query to server
       console.log('trial= ',data.newTrial);
 
-      var jsonTrial = JSON.stringify(data.newTrial);
-
-      console.log('jsonTrial=', jsonTrial);
-
       $.ajax({
         url: '/newTrial',
         dataType: 'json',
