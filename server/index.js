@@ -45,7 +45,7 @@ if (cluster.isMaster) {
     console.log('q3= ',request.url);
 
 
-    var myParams = url.parse(request.url).query;
+    var myParams = url.parse(request.url,true).query;
 
     console.log('myT= ',myParams);
 
@@ -59,9 +59,6 @@ if (cluster.isMaster) {
       return;
     }
 
-    console.log('q= ',request.body);
-
-    console.log('q1= ',request.body);
 
     //let trial = force.createSObject('SignupRequest');
     //trial.set('firstName', tweet.text);
