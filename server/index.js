@@ -42,7 +42,7 @@ if (cluster.isMaster) {
     if(!org.authenticated) { return; }
 
 
-    console.log('q3= ',request.url);
+    console.log('q3= ',request;
 
 
     var myParams = url.parse(request.url).query;
@@ -55,7 +55,7 @@ if (cluster.isMaster) {
 
     console.log('myT= ',myParams);
 
-    var trialData = JSON.parse(myParams);
+    var trialData = url.parse(myParams,true);
 
     console.log('myParams= ',trialData)
 
