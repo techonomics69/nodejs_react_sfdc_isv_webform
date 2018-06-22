@@ -4,6 +4,7 @@ const path = require('path');
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 const url = require('url');
+const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 5000;
 
@@ -31,6 +32,14 @@ if (cluster.isMaster) {
   // Priority serve any static files.
   app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
+  //Parse the text as URL encoded data and expose the resulting object on request.body
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+
+  //Parses the text as JSON and exposes the resulting object on request.body
+  app.use(bodyParser.json());
+
   // Answer API requests.
   app.get('/api', function (req, res) {
     res.set('Content-Type', 'application/json');
@@ -43,6 +52,10 @@ if (cluster.isMaster) {
 
 
     console.log('q3= ',request);
+
+    console.log('body= ',request.body);
+
+    console.log('trial= ', request.body.trial);
 
 
     var myParams = " ";

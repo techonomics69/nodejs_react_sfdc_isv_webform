@@ -31,7 +31,7 @@ class App extends React.Component {
         url: '/newTrial',
         dataType: 'json',
         cache: false,
-        data: {q: jsonTrial},
+        data: {trial: jsonTrial},
         headers: {'trial':jsonTrial},
         method: 'POST',
         success: function(data) {
