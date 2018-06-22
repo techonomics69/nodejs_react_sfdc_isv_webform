@@ -29,7 +29,7 @@ class Home extends React.Component {
 	      company: '',
 	      phone: '',
 	      uname: '',
-	      countryValue: '',
+	      countryCode: '',
 	      prefValue: '',
 	      phoneValue: '',
 
@@ -71,7 +71,7 @@ class Home extends React.Component {
     							 this.state.company, 
     							 this.state.phone, 
     							 this.state.uname, 
-    							 this.state.countryValue, 
+    							 this.state.countryCode, 
     							 this.state.prefValue, 
     							 this.state.phoneValue);
 
