@@ -45,12 +45,13 @@ if (cluster.isMaster) {
     console.log('q3= ',request);
 
 
-    var myParams = url.parse(request.url).query;
+    var myParams = " ";
 
-    var myIndex = myParams.lastIndexOf("&");
+    var myIndex = request.url.lastIndexOf("&");
 
     if (myIndex != -1) {
-      myParams = myParams.substring(0,myIndex);
+      myParams = request.url.substring(0,myIndex);
+      myParams = url.parse(myParams).query;
     }
 
     console.log('myT= ',myParams);
