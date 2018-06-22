@@ -50,12 +50,9 @@ if (cluster.isMaster) {
   app.post('/newTrial', function(request, response) {
     if(!org.authenticated) { return; }
 
-
-    console.log('q3= ',request);
-
     console.log('body= ',request.body);
 
-    console.log('trial= ', request.body.trial);
+    console.log('trial= ', request.body.q);
 
 
     var myParams = " ";

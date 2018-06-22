@@ -32,7 +32,6 @@ class App extends React.Component {
         dataType: 'json',
         cache: false,
         data: {trial: jsonTrial},
-        headers: {'trial':jsonTrial},
         method: 'POST',
         success: function(data) {
           this.setState({result: JSON.stringify(data, null, 2)});
