@@ -30,8 +30,9 @@ class App extends React.Component {
       $.ajax({
         url: '/newTrial',
         dataType: 'json',
+        contentType: 'application/json',
         cache: false,
-        data: {jsonTrial},
+        data: {trial: jsonTrial},
         method: 'POST',
         success: function(data) {
           this.setState({result: JSON.stringify(data, null, 2)});
