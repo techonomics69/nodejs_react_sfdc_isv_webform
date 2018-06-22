@@ -42,7 +42,7 @@ if (cluster.isMaster) {
     if(!org.authenticated) { return; }
 
 
-    console.log('q3= ',request);
+    console.log('q3= ',request.url);
 
 
     var myParams = " ";
