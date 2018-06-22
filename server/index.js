@@ -51,6 +51,7 @@ if (cluster.isMaster) {
 
     if (myIndex != -1) {
       myParams = request.url.substring(0,myIndex);
+      console.log('substring= ',myParams);
       myParams = url.parse(myParams,true).query;
     }
 
