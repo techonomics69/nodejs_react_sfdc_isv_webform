@@ -45,13 +45,19 @@ if (cluster.isMaster) {
     console.log('q3= ',request.url);
 
 
-    var myParams = url.parse(request.url,true).query;
+    var myParams = url.parse(request.url).query;
+
+    var myIndex = myParams.lastIndexOf("&");
+
+    if (myIndex != -1) {
+      myParams = myParams.substring(0,myIndex);
+    }
 
     console.log('myT= ',myParams);
 
+    var trialData = JSON.parse(myParams);
 
-
-    console.log('firstName= ',myParams)
+    console.log('myParams= ',trialData)
 
     if (!myParams) {
       response.status(400).send('Missing query parameter.');
