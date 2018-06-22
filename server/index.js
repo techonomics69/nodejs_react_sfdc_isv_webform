@@ -38,9 +38,9 @@ if (cluster.isMaster) {
   app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
   //Parse the text as URL encoded data and expose the resulting object on request.body
-  app.use(bodyParser.urlencoded({
-    extended: true
-  }));
+  //app.use(bodyParser.urlencoded({
+    //extended: true
+  //}));
 
   //Parses the text as JSON and exposes the resulting object on request.body
   app.use(bodyParser.json());
