@@ -52,7 +52,7 @@ if (cluster.isMaster) {
 
     console.log('body= ',request.body);
 
-    console.log('trial= ', request.body.q);
+    console.log('parsed= ',JSON.parse(request.body));
 
 
     var myParams = " ";
