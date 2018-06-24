@@ -35,7 +35,7 @@ class App extends React.Component {
         method: 'POST',
         success: function(data) {
           this.setState({result: JSON.stringify(data, null, 2)});
-          this.setState({isSubmitted:true});
+          this.setState({isSubmitted:true,});
         }.bind(this),
         error: function(xhr, status, err) {
           this.setState({result: 'Failed to create trial.'});
@@ -49,11 +49,9 @@ class App extends React.Component {
         <div>
           <div className="slds-m-around--xx-large">
             <TrialHeader/>
-            {isSubmitted ? ( 
-              <Home onExecuteQuery={this.handleQueryExecution} />
-              <TrialForm onExecuteQuery={this.handleQueryExecution} />
-            ) : (<TrialSubmitted />)
-            }
+            {!isSubmitted && <Home onExecuteQuery={this.handleQueryExecution} /> }
+            {!isSubmitted && <TrialForm onExecuteQuery={this.handleQueryExecution} /> }
+            {isSubmitted &&<TrialSubmitted /> }
           </div>
         </div>
 
