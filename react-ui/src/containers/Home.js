@@ -20,7 +20,6 @@ class Home extends React.Component {
 
     this.state = {
       isOpen: false,
-      
       redirect: false,
 
       firstName: '',

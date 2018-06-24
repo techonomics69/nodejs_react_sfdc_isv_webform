@@ -26,6 +26,8 @@ class App extends React.Component {
       // Send SOQL query to server
       console.log('trial= ',data.newTrial);
 
+      this.setState({isSubmitted:true,});
+
       $.ajax({
         url: '/newTrial',
         dataType: 'json',
@@ -35,7 +37,6 @@ class App extends React.Component {
         method: 'POST',
         success: function(data) {
           this.setState({result: JSON.stringify(data, null, 2)});
-          this.setState({isSubmitted:true,});
         }.bind(this),
         error: function(xhr, status, err) {
           this.setState({result: 'Failed to create trial.'});
