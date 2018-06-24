@@ -26,7 +26,10 @@ class App extends React.Component {
       // Send SOQL query to server
       console.log('trial= ',data.newTrial);
 
-      this.setState({isSubmitted:true,});
+
+      this.setState({
+        isSubmitted: true,
+      });
 
       $.ajax({
         url: '/newTrial',
@@ -46,6 +49,7 @@ class App extends React.Component {
   
     render() {
       const isSubmitted = this.state.isSubmitted;
+      console.log('isSubmitted= ',isSubmitted);
       return (
         <div>
           <div className="slds-m-around--xx-large">
