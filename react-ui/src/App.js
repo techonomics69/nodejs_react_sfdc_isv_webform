@@ -54,9 +54,15 @@ class App extends React.Component {
         <div>
           <div className="slds-m-around--xx-large">
             <TrialHeader/>
-            {!isSubmitted && <Home onExecuteQuery={this.handleQueryExecution} /> }
+            <div>
+              {!isSubmitted && <Home onExecuteQuery={this.handleQueryExecution} /> }
+            </div>
+            <div>
             {!isSubmitted && <TrialForm onExecuteQuery={this.handleQueryExecution} /> }
-            {isSubmitted &&<TrialSubmitted /> }
+            </div>
+            <div>
+            {isSubmitted && <TrialSubmitted /> }
+            </div>
           </div>
         </div>
 
