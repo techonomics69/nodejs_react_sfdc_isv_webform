@@ -251,11 +251,11 @@ class TrialForm extends React.Component {
 	                            variant="readonly"
 	                            required
 	                          />
+	                          <Button label="Submit" variant="brand" type="submit" onClick={this.handleSubmit.bind(this)}></Button>
 	                        </div>
 	                      </div>
 	                    </div>    
 	                  </section>
-	                  <Button label="Submit" variant="brand" type="submit" onClick={this.handleSubmit.bind(this)}></Button>
 	                </form>
 	              </div>
 	            </IconSettings>
