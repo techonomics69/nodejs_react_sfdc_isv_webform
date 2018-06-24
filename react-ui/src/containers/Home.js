@@ -97,7 +97,7 @@ class Home extends React.Component {
 		<div>
 	            
 	            <IconSettings iconPath="/icons">
-	              <div>
+	              <div align="center">
 	                <Button label="Request a Trial" onClick={() => this.setState({isOpen: !this.state.isOpen})}></Button>
 	                <Modal
 	                  isOpen={this.state.isOpen}
