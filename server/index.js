@@ -80,15 +80,15 @@ if (cluster.isMaster) {
 
     trial.set('PreferredLanguage', 'en_US');
 
-    org.insert({ sobject: trial }, (err) => {
-        if(err) {
-           console.error(err);
-            process.exit(1);
-        }
-        else {
-            console.log('Trial Inserted');
-        }
-    })
+    //org.insert({ sobject: trial }, (err) => {
+    //    if(err) {
+    //       console.error(err);
+    //        process.exit(1);
+    //    }
+    //    else {
+    //        console.log('Trial Inserted');
+    //    }
+    //})
 
     
     response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
