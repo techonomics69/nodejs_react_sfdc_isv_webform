@@ -16,7 +16,6 @@ class App extends React.Component {
       super(props);
       this.state = {
         result: null,
-        isSubmitted: false,
       };
       this.handleQueryExecution = this.handleQueryExecution.bind(this);
     }
@@ -25,10 +24,6 @@ class App extends React.Component {
       //event.preventDefault();
       // Send SOQL query to server
       console.log('trial= ',data.newTrial);
-
-      this.setState({
-        isSubmitted: true,
-      });
 
       $.ajax({
         url: '/newTrial',
@@ -48,20 +43,16 @@ class App extends React.Component {
     }
   
     render() {
-      const isSubmitted = this.state.isSubmitted;
-      console.log('isSubmitted= ',isSubmitted);
+
       return (
         <div>
           <div className="slds-m-around--xx-large">
             <TrialHeader/>
             <div>
-              {!isSubmitted ? <Home onExecuteQuery={this.handleQueryExecution} /> : null }
+              {this.state.result ? <TrialSubmitted /> : <Home onExecuteQuery={this.handleQueryExecution} />}
             </div>
             <div>
-            {!isSubmitted ? <TrialForm onExecuteQuery={this.handleQueryExecution} /> : null }
-            </div>
-            <div>
-            {this.state.result ? <TrialSubmitted /> : null}
+              {this.state.result ? <TrialSubmitted /> : <TrialForm onExecuteQuery={this.handleQueryExecution} />}
             </div>
           </div>
         </div>
