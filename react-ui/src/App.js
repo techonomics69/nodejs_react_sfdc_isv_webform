@@ -33,27 +33,27 @@ class App extends React.Component {
         data: JSON.stringify(data.newTrial),
         method: 'POST',
         success: function(data) {
-          this.setState({result: 'Success'});
+          this.setState({result: 'Thank you for your interest! Please check your email for login instructions.'});
         }.bind(this),
         error: function(xhr, status, err) {
-          this.setState({result: 'Failed'});
-          //this.setState({error: 'Failed to create trial. '+err});
+          this.setState({result: 'Failed to create a trial. '+err});
         }.bind(this)
       });
     }
   
     render() {
 
+      // replace the word TrialForm with TrialModal if you want to add a button component to open a modal instead of a form
+
       return (
         <div>
           <div className="slds-m-around--xx-large">
             <TrialHeader/>
-           // replace TrialForm with TrialModal if you want to add a button component to open a modal instead of a form
             <div>
               {this.state.result == null ? 
                 <TrialForm onExecuteQuery={this.handleQueryExecution} /> 
                 :
-                <TrialSubmitted /> 
+                <TrialSubmitted result={this.state.result}/> 
               }
             </div>  
          
