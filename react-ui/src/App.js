@@ -15,7 +15,8 @@ class App extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        result: false,
+        result: null,
+        isSubmitted: false,
       };
       this.handleQueryExecution = this.handleQueryExecution.bind(this);
     }
@@ -25,6 +26,10 @@ class App extends React.Component {
       // Send SOQL query to server
       console.log('trial= ',data.newTrial);
 
+      this.setState({
+        isSubmitted: true,
+      });
+
       $.ajax({
         url: '/newTrial',
         dataType: 'json',
@@ -33,17 +38,17 @@ class App extends React.Component {
         data: JSON.stringify(data.newTrial),
         method: 'POST',
         success: function(data) {
-          this.setState({result: true});
+          this.setState({result: 'Success'});
         }.bind(this),
         error: function(xhr, status, err) {
-          this.setState({result: false});
+          this.setState({result: 'Failed'});
           this.setState({error: 'Failed to create trial. '+err});
         }.bind(this)
       });
     }
   
     render() {
-      const isSubmitted = this.state.result;
+      const isSubmitted = this.state.isSubmitted;
       console.log('isSubmitted= ',isSubmitted);
       return (
         <div>
