@@ -55,13 +55,7 @@ class App extends React.Component {
                 <TrialSubmitted /> 
               }
             </div> 
-            <div>
-              {this.state.result == null ? 
-                <TrialForm onExecuteQuery={this.handleQueryExecution} /> 
-                :
-                <TrialSubmitted /> 
-              }
-            </div>           
+         
           </div>
         </div>
 
