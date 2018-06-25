@@ -67,11 +67,32 @@ if (cluster.isMaster) {
 
 
     let trial = force.createSObject('SignupRequest');
+    trial.set('FirstName', req.body.firstName);
+    trial.set('LastName', req.body.lastName);
+    trial.set('SignupEmail', req.body.email);
+    trial.set('Company', req.body.company);
+    //trial.set('Phone', req.body.phone);
+    trial.set('Username', req.body.uname);
+    trial.set('Country', req.body.countryCode);
+    //trial.set('ContactPreference', req.body.prefValue);
+    //trial.set('PhonePreference', req.body.phoneValue);
+    trial.set('TemplateId', templateId);
 
+    trial.set('PreferredLanguage', 'en_US');
+
+    //org.insert({ sobject: trial }, (err) => {
+    //    if(err) {
+    //       console.error(err);
+    //        process.exit(1);
+    //    }
+    //    else {
+    //        console.log('Trial Inserted');
+    //    }
+    //})
 
     
     res.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
-    req.destroy();
+    //req.destroy();
   });
 
 
