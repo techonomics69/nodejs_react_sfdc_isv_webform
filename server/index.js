@@ -53,29 +53,29 @@ if (cluster.isMaster) {
   });
 
   // Create a Trial.
-  app.post('/newTrial', function(request, response) {
-    //if(!org.authenticated) { return; }
+  app.post('/newtrial', function(req, res) {
+    if(!org.authenticated) { return; }
 
-    console.log('body= ',request.body);
+    console.log('body= ',req.body);
 
 
-    if (!request.body) {
-      response.status(400).send('Missing query parameter.');
+    if (!req.body) {
+      res.status(400).send('Missing query parameter.');
       console.log('error: missing param');
       return;
     }
 
 
     let trial = force.createSObject('SignupRequest');
-    trial.set('FirstName', request.body.firstName);
-    trial.set('LastName', request.body.lastName);
-    trial.set('SignupEmail', request.body.email);
-    trial.set('Company', request.body.company);
-    //trial.set('Phone', request.body.phone);
-    trial.set('Username', request.body.uname);
-    trial.set('Country', request.body.countryCode);
-    //trial.set('ContactPreference', request.body.prefValue);
-    //trial.set('PhonePreference', request.body.phoneValue);
+    trial.set('FirstName', req.body.firstName);
+    trial.set('LastName', req.body.lastName);
+    trial.set('SignupEmail', req.body.email);
+    trial.set('Company', req.body.company);
+    //trial.set('Phone', req.body.phone);
+    trial.set('Username', req.body.uname);
+    trial.set('Country', req.body.countryCode);
+    //trial.set('ContactPreference', req.body.prefValue);
+    //trial.set('PhonePreference', req.body.phoneValue);
     trial.set('TemplateId', templateId);
 
     trial.set('PreferredLanguage', 'en_US');
@@ -91,8 +91,8 @@ if (cluster.isMaster) {
     //})
 
     
-    response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
-    request.destroy();
+    res.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
+    //req.destroy();
   });
 
 

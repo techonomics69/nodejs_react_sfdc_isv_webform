@@ -26,7 +26,7 @@ class App extends React.Component {
       console.log('trial= ',data.newTrial);
 
       $.ajax({
-        url: '/newTrial',
+        url: '/newtrial',
         dataType: 'json',
         contentType: 'application/json',
         processData: false,
