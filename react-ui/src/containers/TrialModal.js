@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { Button, Modal, IconSettings, Input, Combobox } from '@salesforce/design-system-react';
-import {BrowserRouter as Router, Route, Link, Switch, Redirect} from 'react-router-dom';
 import '../App.css';
 import {COUNTRIES} from '../data/combodata';
 import {PTYPES} from '../data/combodata';
 import {CPREFS} from '../data/combodata';
 import {Trial} from './Trial';
-
-var $ = require('jquery');
 
 
 
@@ -84,12 +81,6 @@ class TrialModal extends React.Component {
   }
 
   render() {
-  	
-  	if (this.state.redirect) {
-  		return (
-  			<Redirect to="/TrialSubmitted" />
-  			);
-  	}
 
     return (
 		<div>

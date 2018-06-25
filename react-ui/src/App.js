@@ -6,7 +6,7 @@ import { Button, Modal, IconSettings, Input, Combobox } from '@salesforce/design
 import TrialModal from './containers/TrialModal';
 import TrialForm from './containers/TrialForm';
 import TrialHeader from './containers/TrialHeader';
-import TrialSubmitted from './TrialSubmittedComponent';
+import TrialSubmitted from './containers/TrialSubmitted';
 import $ from 'jquery'; 
 
 
