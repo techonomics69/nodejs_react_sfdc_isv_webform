@@ -38,13 +38,14 @@ if (cluster.isMaster) {
   // Priority serve any static files.
   app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
-  //Parse the text as URL encoded data and expose the resulting object on request.body
-  //app.use(bodyParser.urlencoded({
-    //extended: true
-  //}));
 
   //Parses the text as JSON and exposes the resulting object on request.body
   app.use(bodyParser.json());
+
+  //Parse the text as URL encoded data and expose the resulting object on request.body
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 
   // Answer API requests.
   app.get('/api', function (req, res) {
@@ -92,7 +93,7 @@ if (cluster.isMaster) {
 
     
     res.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
-    //req.destroy();
+
   });
 
 
