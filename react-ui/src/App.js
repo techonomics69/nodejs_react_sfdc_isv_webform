@@ -48,14 +48,7 @@ class App extends React.Component {
         <div>
           <div className="slds-m-around--xx-large">
             <TrialHeader/>
-           // uncomment out the below if you want to add a button component to open a modal instead of a form
-           // <div>
-           //   {this.state.result == null ? 
-           //     <TrialModal onExecuteQuery={this.handleQueryExecution} />  
-           //     :
-           //     <TrialSubmitted /> 
-           //   }
-           // </div> 
+           // replace TrialForm with TrialModal if you want to add a button component to open a modal instead of a form
             <div>
               {this.state.result == null ? 
                 <TrialForm onExecuteQuery={this.handleQueryExecution} /> 
