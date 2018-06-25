@@ -25,12 +25,16 @@ class App extends React.Component {
       // Send SOQL query to server
       console.log('trial= ',data.newTrial);
 
+      var nt = JSON.stringify(data.newTrial);
+
+      console.log('nt= ',nt);
+
       $.ajax({
         url: '/newtrial',
         dataType: 'json',
         contentType: 'application/json',
         processData: false,
-        data: JSON.stringify(data.newTrial),
+        data: nt,
         method: 'POST',
         success: function(data) {
           this.setState({result: 'Thank you for your interest! Please check your email for login instructions.'});
