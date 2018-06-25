@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import logo from '../salesforcelogo.png';
 import '../App.css';
 
 
@@ -17,7 +17,12 @@ class TrialHeader extends React.Component {
 	              <h1 className="App-title">Welcome to React</h1>
 	            </header>
 	            <p className="App-intro">
-	              To get started, edit <code>src/App.js</code> and save to reload.
+	              	    <span>
+	                      Register now and for thirty days you'll have full access to all the features and capabilities 
+	                      that make salesforce.com the world's most popular CRM.  
+
+	                      By signing up for a trial, you agree to the {' '}<a href="javascript:void(0)">Master License Subscription</a> and agree to share my details with Salesforce.com
+	                    </span>
 	            </p>
 	          </div>
 	        );

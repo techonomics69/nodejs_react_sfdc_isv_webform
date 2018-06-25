@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import {BrowserRouter as Router, Route, Link, Switch, Redirect} from 'react-router-dom';
-import logo from './logo.svg';
+import logo from './salesforcelogo.png';
 import './App.css';
 import { Button, Modal, IconSettings, Input, Combobox } from '@salesforce/design-system-react';
 import TrialModal from './containers/TrialModal';
@@ -21,20 +21,14 @@ class App extends React.Component {
     }
 
     handleQueryExecution(data) {
-      //event.preventDefault();
-      // Send SOQL query to server
-      console.log('trial= ',data.newTrial);
-
-      var nt = JSON.stringify(data.newTrial);
-
-      console.log('nt= ',nt);
+      // Send form data to server
 
       $.ajax({
         url: '/newtrial',
         dataType: 'json',
         contentType: 'application/json',
         processData: false,
-        data: nt,
+        data: JSON.stringify(data.newTrial),
         method: 'POST',
         success: function(data) {
           this.setState({result: 'Thank you for your interest! Please check your email for login instructions.'});

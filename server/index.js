@@ -91,9 +91,8 @@ if (cluster.isMaster) {
     //    }
     //})
 
-    res.status(200).send(JSON.stringify({"data":"Thank you for your interest. Check your email for login instructions."}));
+    res.status(200).send(JSON.stringify({"data":"Success"}));
     
-    //res.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
 
   });
 
