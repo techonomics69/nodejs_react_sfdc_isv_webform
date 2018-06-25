@@ -58,9 +58,6 @@ class App extends React.Component {
                 :
                 <TrialSubmitted /> }
             </div>
-            <div>
-              {this.state.result ? <TrialSubmitted /> : }
-            </div>
           </div>
         </div>
 
