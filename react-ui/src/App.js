@@ -37,7 +37,7 @@ class App extends React.Component {
         }.bind(this),
         error: function(xhr, status, err) {
           this.setState({result: 'Failed'});
-          this.setState({error: 'Failed to create trial. '+err});
+          //this.setState({error: 'Failed to create trial. '+err});
         }.bind(this)
       });
     }
@@ -49,10 +49,17 @@ class App extends React.Component {
           <div className="slds-m-around--xx-large">
             <TrialHeader/>
             <div>
-              {this.state.result ? <TrialSubmitted /> : <Home onExecuteQuery={this.handleQueryExecution} />}
+              {this.state.result == null ? 
+                <div>
+                  <div> <Home onExecuteQuery={this.handleQueryExecution} /> </div>
+                  <div> <TrialForm onExecuteQuery={this.handleQueryExecution} /> </div>
+                </div>
+
+                :
+                <TrialSubmitted /> }
             </div>
             <div>
-              {this.state.result ? <TrialSubmitted /> : <TrialForm onExecuteQuery={this.handleQueryExecution} />}
+              {this.state.result ? <TrialSubmitted /> : }
             </div>
           </div>
         </div>
