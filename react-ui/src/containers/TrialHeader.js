@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../salesforcelogo.svg';
+import logo from '../logosalesforce.svg';
 import '../App.css';
 
 
