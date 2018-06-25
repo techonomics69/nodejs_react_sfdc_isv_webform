@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Link, Switch, Redirect} from 'react-router-dom';
+//import {BrowserRouter as Router, Route, Link, Switch, Redirect} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import { Button, Modal, IconSettings, Input, Combobox } from '@salesforce/design-system-react';
@@ -15,8 +15,7 @@ class App extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        result: null,
-        isSubmitted: false,
+        result: false,
       };
       this.handleQueryExecution = this.handleQueryExecution.bind(this);
     }
@@ -26,11 +25,6 @@ class App extends React.Component {
       // Send SOQL query to server
       console.log('trial= ',data.newTrial);
 
-
-      this.setState({
-        isSubmitted: true,
-      });
-
       $.ajax({
         url: '/newTrial',
         dataType: 'json',
@@ -39,42 +33,34 @@ class App extends React.Component {
         data: JSON.stringify(data.newTrial),
         method: 'POST',
         success: function(data) {
-          this.setState({result: JSON.stringify(data, null, 2)});
+          this.setState({result: true});
         }.bind(this),
         error: function(xhr, status, err) {
-          this.setState({result: 'Failed to create trial.'});
+          this.setState({result: false});
+          this.setState({error: 'Failed to create trial. '+err});
         }.bind(this)
       });
     }
   
     render() {
-      const isSubmitted = this.state.isSubmitted;
+      const isSubmitted = this.state.result;
       console.log('isSubmitted= ',isSubmitted);
       return (
         <div>
           <div className="slds-m-around--xx-large">
             <TrialHeader/>
             <div>
-              {!isSubmitted && <Home onExecuteQuery={this.handleQueryExecution} /> }
+              {!isSubmitted ? <Home onExecuteQuery={this.handleQueryExecution} /> : null }
             </div>
             <div>
-            {!isSubmitted && <TrialForm onExecuteQuery={this.handleQueryExecution} /> }
+            {!isSubmitted ? <TrialForm onExecuteQuery={this.handleQueryExecution} /> : null }
             </div>
             <div>
-            {isSubmitted && <TrialSubmitted /> }
+            {isSubmitted ? <TrialSubmitted /> : null}
             </div>
           </div>
         </div>
 
-
-
-
-        //<Router>
-          //<Switch>
-            //<Route exact path="/" component={Home} />
-            //<Route path="/TrialSubmitted" component={TrialSubmitted} />
-          //</Switch>
-        ///</Router>
       );
     } 
 }
