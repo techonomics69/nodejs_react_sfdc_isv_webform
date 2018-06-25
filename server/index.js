@@ -54,7 +54,7 @@ if (cluster.isMaster) {
 
   // Create a Trial.
   app.post('/newTrial', function(request, response) {
-    if(!org.authenticated) { return; }
+    //if(!org.authenticated) { return; }
 
     console.log('body= ',request.body);
 
