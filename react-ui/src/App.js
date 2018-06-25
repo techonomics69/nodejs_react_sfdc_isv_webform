@@ -36,7 +36,7 @@ class App extends React.Component {
           this.setState({result: 'Thank you for your interest! Please check your email for login instructions.'});
         }.bind(this),
         error: function(xhr, status, err) {
-          this.setState({result: 'Failed to create a trial. '+err});
+          this.setState({result: 'Failed to create a trial. '+err+' status='+status+' xhr= '+xhr});
         }.bind(this)
       });
     }
