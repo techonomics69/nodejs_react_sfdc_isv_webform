@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal, IconSettings, Input, Combobox } from '@salesforce/design-system-react';
+import { Button, IconSettings, Input, Combobox } from '@salesforce/design-system-react';
 import {BrowserRouter as Router, Route, Link, Switch, Redirect} from 'react-router-dom';
 import logo from '../logo.svg';
 import '../App.css';
