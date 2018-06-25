@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Button, Modal, IconSettings, Input, Combobox } from '@salesforce/design-system-react';
-import Home from './containers/Home';
+import TrialModal from './containers/TrialModal';
 import TrialForm from './containers/TrialForm';
 import TrialHeader from './containers/TrialHeader';
 import TrialSubmitted from './TrialSubmittedComponent';
@@ -48,13 +48,21 @@ class App extends React.Component {
         <div>
           <div className="slds-m-around--xx-large">
             <TrialHeader/>
+           // uncomment out the below if you want to add a button component to open a modal instead of a form
+           // <div>
+           //   {this.state.result == null ? 
+           //     <TrialModal onExecuteQuery={this.handleQueryExecution} />  
+           //     :
+           //     <TrialSubmitted /> 
+           //   }
+           // </div> 
             <div>
               {this.state.result == null ? 
-                <Home onExecuteQuery={this.handleQueryExecution} />  
+                <TrialForm onExecuteQuery={this.handleQueryExecution} /> 
                 :
                 <TrialSubmitted /> 
               }
-            </div> 
+            </div>  
          
           </div>
         </div>
