@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import {BrowserRouter as Router, Route, Link, Switch, Redirect} from 'react-router-dom';
-import logo from './salesforcelogo.png';
+import logo from './salesforcelogo.svg';
 import './App.css';
 import { Button, Modal, IconSettings, Input, Combobox } from '@salesforce/design-system-react';
 import TrialModal from './containers/TrialModal';

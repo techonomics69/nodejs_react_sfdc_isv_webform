@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from '../salesforcelogo.png';
+import logo from '../salesforcelogo.svg';
 import '../App.css';
 
 
@@ -14,7 +14,7 @@ class TrialHeader extends React.Component {
 		<div className="App">
 	            <header className="App-header">
 	              <img src={logo} className="App-logo" alt="logo" />
-	              <h1 className="App-title">Welcome to React</h1>
+	              <h1 className="App-title">Request a Salesforce Trial</h1>
 	            </header>
 	            <p className="App-intro">
 	              	    <span>
