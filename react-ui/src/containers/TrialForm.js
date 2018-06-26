@@ -72,6 +72,7 @@ class TrialForm extends React.Component {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
+    var e = '';
 
     //this.setState({
     //  [name]: value,
@@ -80,15 +81,18 @@ class TrialForm extends React.Component {
 
 
     Object.keys(this.state.trial).map((i) => {
-    	var e = [i]+'Error';
-    	this.setState({ [i]: value,
-    					[e]: '',})
+    	e = [i]+'Error';
+    	this.setState({ [i]: value,})
     	console.log('i= ',i);
     	console.log('value= ',value);
-    	console.log('e=',e);
 	});
 
-    console.log('trial.firstName:',this.trial.firstName);
+	if ( e != '') {
+		this.setState({
+			[e]: '',
+		});
+	}
+
   }
 
   handleSubmit(event){
