@@ -74,18 +74,18 @@ class TrialForm extends React.Component {
     const name = target.name;
     var e = name+'Error';
 
-    //this.setState({
-    //  [name]: value,
-    //  [e]: '',
-    //});
-    Object.keys(this.state.trial).map((i) => {
-    	var e = [i]+'Error';
-    	this.setState({ [i]: value,
-    					[e]: '',})
-    	console.log('i= ',i);
-    	console.log('value= ',value);
-    	console.log('e=',e);
-	});
+    this.setState({
+      trial.[name]: value,
+      [e]: '',
+    });
+    //Object.keys(this.state.trial).map((i) => {
+    //	var e = [i]+'Error';
+    //	this.setState({ [i]: value,
+    //					[e]: '',})
+    //	console.log('i= ',i);
+    //	console.log('value= ',value);
+    //	console.log('e=',e);
+	//});
 
     //console.log('state:'+name+' value: '+value);
   }
