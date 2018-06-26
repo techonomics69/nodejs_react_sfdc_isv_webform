@@ -85,21 +85,19 @@ class TrialForm extends React.Component {
     });
 
 
-    let myTrial = new Trial(this.state.firstName, 
-    							 this.state.lastName, 
-    							 this.state.email, 
-    							 this.state.company, 
-    							 this.state.phone, 
-    							 this.state.uname, 
-    							 this.state.countryCode, 
-    							 this.state.prefValue, 
-    							 this.state.phoneValue);
+    //let myTrial = new Trial(this.state.firstName, 
+    //							 this.state.lastName, 
+    //							 this.state.email, 
+    //							 this.state.company, 
+    //							 this.state.phone, 
+    //							 this.state.uname, 
+    //							 this.state.countryCode, 
+    //							 this.state.prefValue, 
+    //							 this.state.phoneValue);
 
-    if (!myTrial){
-    	return;
-    }
-
-    console.log('myTrial= ',myTrial);
+    //if (!myTrial){
+    //	return;
+    //}
 
     //this.props.onExecuteQuery({newTrial: myTrial});
 
