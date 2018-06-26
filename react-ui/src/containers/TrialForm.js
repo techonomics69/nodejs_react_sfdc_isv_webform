@@ -39,7 +39,7 @@ class TrialForm extends React.Component {
 	  companyError: '',
 	  phoneError: '',
 	  unameError: '',
-	  countryCodeError: '',
+	  countryValueError: '',
 	  prefValueError: '',
 	  phoneValueError: '',
 
@@ -127,6 +127,7 @@ class TrialForm extends React.Component {
 	                            required
 	                            name="firstName"
 	                            type="text"
+	                            errorText={this.state.firstNameError}
 	                            onChange={this.handleInputChange}
 	                          />
 	                        </div>
@@ -137,6 +138,7 @@ class TrialForm extends React.Component {
 	                            required
 	                            name="email"
 	                            type="email"
+	                            errorText={this.state.emailError}
 	                            onChange={this.handleInputChange}
 	                          />
 	                        </div>
@@ -146,6 +148,7 @@ class TrialForm extends React.Component {
 	                            label="Phone"
 	                            required
 	                            name="phone"
+	                            errorText={this.state.phoneError}
 	                            type="tel"
 	                            onChange={this.handleInputChange}
 	                          />
@@ -157,6 +160,7 @@ class TrialForm extends React.Component {
 	                            required
 	                            name="company"
 	                            type="text"
+	                            errorText={this.state.companyError}
 	                            onChange={this.handleInputChange}
 	                          />
 	                        </div>
@@ -167,6 +171,7 @@ class TrialForm extends React.Component {
 	                            required
 	                            name="uname"
 	                            type="text"
+	                            errorText={this.state.unameError}
 	                            onChange={this.handleInputChange}
 	                            placeholder="example: sara@trial.user or mike@my.trial"
 	                          />
@@ -180,6 +185,7 @@ class TrialForm extends React.Component {
 	                            required
 	                            name="lastName"
 	                            type="text"
+	                            errorText={this.state.lastNameError}
 	                            onChange={this.handleInputChange}
 	                          />
 	                        </div>
@@ -206,6 +212,7 @@ class TrialForm extends React.Component {
 	                              label: 'Contact Preference',
 	                            }}
 	                            options={CPREFS}
+	                            errorText={this.state.prefValueError}
 	                            selection={this.state.prefSelection}
 	                            value={this.state.prefValue}
 	                            variant="readonly"
@@ -238,6 +245,7 @@ class TrialForm extends React.Component {
 	                            selection={this.state.phoneSelection}
 	                            value={this.state.phoneValue}
 	                            variant="readonly"
+	                            errorText={this.state.phoneValueError}
 	                            required
 	                          />
 	                        </div>
@@ -268,6 +276,7 @@ class TrialForm extends React.Component {
 	                            selection={this.state.countrySelection}
 	                            value={this.state.countryValue}
 	                            variant="readonly"
+	                            errorText={this.state.countryValueError}
 	                            required
 	                          />
 	                        </div>
