@@ -156,7 +156,7 @@ class TrialForm extends React.Component {
 	                            type="text"
 	                            errorText={this.state.firstNameError}
 	                            onChange={this.handleInputChange}
-	                            value={this.state.trial.firstName}
+	                            value={this.state.firstName}
 	                          />
 	                        </div>
 	                        <div className="slds-form-element slds-m-bottom--large">
