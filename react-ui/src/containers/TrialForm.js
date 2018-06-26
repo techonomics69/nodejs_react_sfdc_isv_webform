@@ -105,6 +105,8 @@ class TrialForm extends React.Component {
       isOpen: false,
     });
 
+    console.log('firstname=',this.state.firstName);
+
     Object.keys(this.state.trial).map((key) => {
     	if(this.state.trial[key] == ''){
     		console.log('key='+key+' value= '+this.state.trial[key]);
@@ -156,7 +158,6 @@ class TrialForm extends React.Component {
 	                            type="text"
 	                            errorText={this.state.firstNameError}
 	                            onChange={this.handleInputChange}
-	                            value={this.state.firstName}
 	                          />
 	                        </div>
 	                        <div className="slds-form-element slds-m-bottom--large">
