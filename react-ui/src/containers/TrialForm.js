@@ -98,18 +98,23 @@ class TrialForm extends React.Component {
   handleSubmit(event){
     event.preventDefault();
 
+    var e = '';
+
     this.setState({
       isOpen: false,
     });
 
     Object.keys(this.state.trial).map((key) => {
-    	if(this.state.trial[key] == '' || this.state.trial[key] == null){
-    		console.log('key=',key);
-    		var e = [key]+'Error';
-    		this.setState({[e]: 'This is a required field.',});
-    		console.log('error= ',e);
+    	if(this.state.trial[key] == ''){
+    		console.log('key='+key+' value= '+this.state.trial[key]);
+    		e = [key]+'Error';
     	}
     });
+
+    if (e != '') {
+    	this.setState({[e]: 'This is a required field.',});
+    		console.log('error= ',e);
+    }
 
 
     //let myTrial = new Trial(this.state.firstName, 
@@ -233,7 +238,7 @@ class TrialForm extends React.Component {
 	                              label: 'Contact Preference',
 	                            }}
 	                            options={CPREFS}
-	                            errorText={this.state.trial.prefValueError}
+	                            errorText={this.state.prefValueError}
 	                            selection={this.state.trial.prefSelection}
 	                            value={this.state.trial.prefValue}
 	                            variant="readonly"
@@ -266,7 +271,7 @@ class TrialForm extends React.Component {
 	                            selection={this.state.trial.phoneSelection}
 	                            value={this.state.trial.phoneValue}
 	                            variant="readonly"
-	                            errorText={this.state.trial.phoneValueError}
+	                            errorText={this.state.phoneValueError}
 	                            required
 	                          />
 	                        </div>
@@ -297,7 +302,7 @@ class TrialForm extends React.Component {
 	                            selection={this.state.trial.countrySelection}
 	                            value={this.state.trial.countryValue}
 	                            variant="readonly"
-	                            errorText={this.state.trial.countryValueError}
+	                            errorText={this.state.countryCodeError}
 	                            required
 	                          />
 	                        </div>
