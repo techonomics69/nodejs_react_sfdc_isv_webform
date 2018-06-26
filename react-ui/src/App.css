@@ -21,3 +21,21 @@
   font-size: large;
 }
 
+.App-body {
+  font-size: medium;
+}
+
+input.active:valid {
+	box-shadow: 0 0 5px green;
+}
+
+input.active:invalid {
+	box-shadow: 0 0 5px red;
+}
+
+.error {
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
+}
+

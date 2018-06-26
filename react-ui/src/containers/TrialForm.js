@@ -24,14 +24,25 @@ class TrialForm extends React.Component {
       redirect: false,
 
       firstName: '',
-	      lastName: '',
-	      email: '',
-	      company: '',
-	      phone: '',
-	      uname: '',
-	      countryCode: '',
-	      prefValue: '',
-	      phoneValue: '',
+	  lastName: '',
+	  email: '',
+	  company: '',
+	  phone: '',
+	  uname: '',
+	  countryCode: '',
+	  prefValue: '',
+	  phoneValue: '',
+
+	  firstNameError: '',
+	  lastNameError: '',
+	  emailError: '',
+	  companyError: '',
+	  phoneError: '',
+	  unameError: '',
+	  countryCodeError: '',
+	  prefValueError: '',
+	  phoneValueError: '',
+
 
     };
 
@@ -50,6 +61,7 @@ class TrialForm extends React.Component {
 
     this.setState({
       [name]: value,
+      [name]'Error': '',
     });
     //Object.keys(this.state.trial).map(i => this.setState({ [i]: value }))
 
@@ -63,7 +75,13 @@ class TrialForm extends React.Component {
       isOpen: false,
     });
 
-    //console.log('trail=',trial);
+    Object.keys(this.state.item).map((i) => {
+    	if(this.state.item[i] == ''){
+    		var e = [i]+'Error';
+    		this.setState({[e]: 'This is a required field.',})
+    	}
+    });
+
 
     let myTrial = new Trial(this.state.firstName, 
     							 this.state.lastName, 
@@ -81,7 +99,7 @@ class TrialForm extends React.Component {
 
     console.log('myTrial= ',myTrial);
 
-    this.props.onExecuteQuery({newTrial: myTrial});
+    //this.props.onExecuteQuery({newTrial: myTrial});
 
   }
 
