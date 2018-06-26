@@ -82,7 +82,7 @@ class TrialForm extends React.Component {
 
     Object.keys(this.state.trial).map((key) => {
     	e = [key]+'Error';
-    	this.setState({ trial[key]: value,});
+    	this.setState({ [key]: value,});
     	console.log('i= ',key);
     	console.log('value= ',value);
     	console.log('key='+key+' value= '+this.state.trial[key]);
