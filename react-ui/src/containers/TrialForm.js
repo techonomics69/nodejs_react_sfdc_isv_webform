@@ -72,24 +72,23 @@ class TrialForm extends React.Component {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    console.log('name= ',name);
-    var e = name+'Error';
-    var t = "trial."+name;
 
-    this.setState({
-      [t]: value,
-      [e]: '',
-    });
-    //Object.keys(this.state.trial).map((i) => {
-    //	var e = [i]+'Error';
-    //	this.setState({ [i]: value,
-    //					[e]: '',})
-    //	console.log('i= ',i);
-    //	console.log('value= ',value);
-    //	console.log('e=',e);
-	//});
+    //this.setState({
+    //  [name]: value,
+    //  [e]: '',
+    //});
 
-    //console.log('state:'+name+' value: '+value);
+
+    Object.keys(this.state.trial).map((i) => {
+    	var e = [i]+'Error';
+    	this.setState({ [i]: value,
+    					[e]: '',})
+    	console.log('i= ',i);
+    	console.log('value= ',value);
+    	console.log('e=',e);
+	});
+
+    console.log('trial.firstName:',this.trial.firstName);
   }
 
   handleSubmit(event){
@@ -101,6 +100,7 @@ class TrialForm extends React.Component {
 
     Object.keys(this.state.trial).map((key) => {
     	if(this.state.trial[key] == '' || this.state.trial[key] == null){
+    		console.log('key=',key);
     		var e = [key]+'Error';
     		this.setState({[e]: 'This is a required field.',});
     		console.log('error= ',e);
