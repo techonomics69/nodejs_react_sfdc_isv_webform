@@ -43,6 +43,20 @@ class TrialForm extends React.Component {
 	  prefValueError: '',
 	  phoneValueError: '',
 
+	  trial: {
+
+	  	  firstName: '',
+		  lastName: '',
+		  email: '',
+		  company: '',
+		  phone: '',
+		  uname: '',
+		  countryCode: '',
+		  prefValue: '',
+		  phoneValue: '',
+
+	  }
+
 
     };
 
@@ -60,13 +74,20 @@ class TrialForm extends React.Component {
     const name = target.name;
     var e = name+'Error';
 
-    this.setState({
-      [name]: value,
-      [e]: '',
-    });
-    //Object.keys(this.state.trial).map(i => this.setState({ [i]: value }))
+    //this.setState({
+    //  [name]: value,
+    //  [e]: '',
+    //});
+    Object.keys(this.state.trial).map((i) => {
+    	var e = [i]+'Error';
+    	this.setState({ [i]: value,
+    					[e]: '',})
+    	console.log('i= ',i);
+    	console.log('value= ',value);
+    	console.log('e=',e);
+	});
 
-    console.log('state:'+name+' value: '+value);
+    //console.log('state:'+name+' value: '+value);
   }
 
   handleSubmit(event){
@@ -76,8 +97,8 @@ class TrialForm extends React.Component {
       isOpen: false,
     });
 
-    Object.keys(this.state.item).map((key) => {
-    	if(this.state.item[key] == '' || this.state.item[key] == null){
+    Object.keys(this.state.trial).map((key) => {
+    	if(this.state.trial[key] == '' || this.state.trial[key] == null){
     		var e = [key]+'Error';
     		this.setState({[e]: 'This is a required field.',});
     		console.log('error= ',e);
@@ -206,9 +227,9 @@ class TrialForm extends React.Component {
 	                              label: 'Contact Preference',
 	                            }}
 	                            options={CPREFS}
-	                            errorText={this.state.prefValueError}
-	                            selection={this.state.prefSelection}
-	                            value={this.state.prefValue}
+	                            errorText={this.state.trial.prefValueError}
+	                            selection={this.state.trial.prefSelection}
+	                            value={this.state.trial.prefValue}
 	                            variant="readonly"
 	                            required
 	                          />
@@ -236,10 +257,10 @@ class TrialForm extends React.Component {
 	                              label: 'Phone Type',
 	                            }}
 	                            options={PTYPES}
-	                            selection={this.state.phoneSelection}
-	                            value={this.state.phoneValue}
+	                            selection={this.state.trial.phoneSelection}
+	                            value={this.state.trial.phoneValue}
 	                            variant="readonly"
-	                            errorText={this.state.phoneValueError}
+	                            errorText={this.state.trial.phoneValueError}
 	                            required
 	                          />
 	                        </div>
@@ -267,10 +288,10 @@ class TrialForm extends React.Component {
 	                              label: 'Country',
 	                            }}
 	                            options={COUNTRIES}
-	                            selection={this.state.countrySelection}
-	                            value={this.state.countryValue}
+	                            selection={this.state.trial.countrySelection}
+	                            value={this.state.trial.countryValue}
 	                            variant="readonly"
-	                            errorText={this.state.countryValueError}
+	                            errorText={this.state.trial.countryValueError}
 	                            required
 	                          />
 	                        </div>
