@@ -79,7 +79,8 @@ class TrialForm extends React.Component {
     Object.keys(this.state.item).map((i) => {
     	if(this.state.item[i] == '' || this.state.item[i] == null){
     		var e = [i]+'Error';
-    		this.setState({[e]: 'This is a required field.',})
+    		this.setState({[e]: 'This is a required field.',});
+    		console.log('error= ',e);
     	}
     });
 
