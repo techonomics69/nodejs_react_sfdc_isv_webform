@@ -19,9 +19,6 @@ class TrialForm extends React.Component {
     super(props);
 
     this.state = {
-      isOpen: false,
-      
-      redirect: false,
 
       firstName: {value:'', isValid:true, message:''},
 	  lastName: {value:'', isValid:true, message:''},
@@ -52,6 +49,7 @@ class TrialForm extends React.Component {
 
     var state = this.state;
     state[name].value = value;
+    state[name].message = '';
 
     this.setState(state);
 
@@ -61,42 +59,41 @@ class TrialForm extends React.Component {
   handleSubmit(event){
     event.preventDefault();
 
-    var e = '';
+    var state = this.state;
+    var val = true;
 
-    this.setState({
-      isOpen: false,
-    });
+    console.log('prefValue=',this.state.prefValue);
 
-    console.log('firstname=',this.state.firstName);
-
-    Object.keys(this.state.trial).map((key) => {
-    	if(this.state.trial[key] == ''){
-    		console.log('key='+key+' value= '+this.state.trial[key]);
-    		e = [key]+'Error';
+    Object.keys(state).map(key => {
+    	if(state[key].value == ''){
+    		state[key].message = 'This is a required field.'
+    		val = false;
     	}
     });
 
-    if (e != '') {
-    	this.setState({[e]: 'This is a required field.',});
-    		console.log('error= ',e);
-    }
+    this.setState(state);
+
+    if (!val) {
+    	console.log('validation error');
+    } else {
 
 
-    //let myTrial = new Trial(this.state.firstName, 
-    //							 this.state.lastName, 
-    //							 this.state.email, 
-    //							 this.state.company, 
-    //							 this.state.phone, 
-    //							 this.state.uname, 
-    //							 this.state.countryCode, 
-    //							 this.state.prefValue, 
-    //							 this.state.phoneValue);
+    	let myTrial = new Trial(this.state.firstName, 
+    								 this.state.lastName, 
+    								 this.state.email, 
+    								 this.state.company, 
+    								 this.state.phone, 
+    								 this.state.uname, 
+    								 this.state.countryCode, 
+    								 this.state.prefValue, 
+    								 this.state.phoneValue);
 
-    //if (!myTrial){
-    //	return;
-    //}
+    	if (!myTrial){
+    		return;
+    	}
 
-    //this.props.onExecuteQuery({newTrial: myTrial});
+    	this.props.onExecuteQuery({newTrial: myTrial});
+	}
 
   }
 
