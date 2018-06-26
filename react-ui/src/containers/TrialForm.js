@@ -201,7 +201,7 @@ class TrialForm extends React.Component {
 	                                  console.log('onSelect', event, data);
 	                                }
 	                                this.setState({
-	                                  prefValue.value: data.selection[0].id,
+	                                  prefValue: data.selection[0].id,
 	                                  prefSelection: data.selection,
 	                                });
 	                              },
