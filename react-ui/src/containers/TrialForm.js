@@ -24,24 +24,14 @@ class TrialForm extends React.Component {
       redirect: false,
 
       firstName: {value:'', isValid:true, message:''},
-	  lastName: '',
-	  email: '',
-	  company: '',
-	  phone: '',
-	  uname: '',
-	  countryCode: '',
-	  prefValue: '',
-	  phoneValue: '',
-
-	  firstNameError: '',
-	  lastNameError: '',
-	  emailError: '',
-	  companyError: '',
-	  phoneError: '',
-	  unameError: '',
-	  countryValueError: '',
-	  prefValueError: '',
-	  phoneValueError: '',
+	  lastName: {value:'', isValid:true, message:''},
+	  email: {value:'', isValid:true, message:''},
+	  company: {value:'', isValid:true, message:''},
+	  phone: {value:'', isValid:true, message:''},
+	  uname: {value:'', isValid:true, message:''},
+	  countryCode: {value:'', isValid:true, message:''},
+	  prefValue: {value:'', isValid:true, message:''},
+	  phoneValue: {value:'', isValid:true, message:''},
 
 
     };
@@ -64,8 +54,6 @@ class TrialForm extends React.Component {
     state[name].value = value;
 
     this.setState(state);
-
-
 
 
   }
@@ -114,6 +102,7 @@ class TrialForm extends React.Component {
 
   render() {
   	
+  	var {firstName, lastName, email, company, phone, uname, countryCode, prefValue, phoneValue} = this.state;
 
     return (
 		<div>
@@ -130,7 +119,8 @@ class TrialForm extends React.Component {
 	                            required
 	                            name="firstName"
 	                            type="text"
-	                            errorText={this.state.firstNameError}
+	                            errorText={firstName.message}
+	                            value={firstName.value}
 	                            onChange={this.handleInputChange}
 	                          />
 	                        </div>
@@ -141,7 +131,8 @@ class TrialForm extends React.Component {
 	                            required
 	                            name="email"
 	                            type="email"
-	                            errorText={this.state.emailError}
+	                            errorText={email.message}
+	                            value={email.value}
 	                            onChange={this.handleInputChange}
 	                          />
 	                        </div>
@@ -151,7 +142,8 @@ class TrialForm extends React.Component {
 	                            label="Phone"
 	                            required
 	                            name="phone"
-	                            errorText={this.state.phoneError}
+	                            errorText={phone.message}
+	                            value={phone.value}
 	                            type="tel"
 	                            onChange={this.handleInputChange}
 	                          />
@@ -163,7 +155,8 @@ class TrialForm extends React.Component {
 	                            required
 	                            name="company"
 	                            type="text"
-	                            errorText={this.state.companyError}
+	                            errorText={company.message}
+	                            value={company.value}
 	                            onChange={this.handleInputChange}
 	                          />
 	                        </div>
@@ -174,7 +167,8 @@ class TrialForm extends React.Component {
 	                            required
 	                            name="uname"
 	                            type="text"
-	                            errorText={this.state.unameError}
+	                            errorText={uname.message}
+	                            value={uname.value}
 	                            onChange={this.handleInputChange}
 	                            placeholder="example: sara@trial.user or mike@my.trial"
 	                          />
@@ -188,7 +182,8 @@ class TrialForm extends React.Component {
 	                            required
 	                            name="lastName"
 	                            type="text"
-	                            errorText={this.state.lastNameError}
+	                            errorText={lastName.message}
+	                            value={lastName.value}
 	                            onChange={this.handleInputChange}
 	                          />
 	                        </div>
@@ -206,7 +201,7 @@ class TrialForm extends React.Component {
 	                                  console.log('onSelect', event, data);
 	                                }
 	                                this.setState({
-	                                  prefValue: data.selection[0].id,
+	                                  prefValue.value: data.selection[0].id,
 	                                  prefSelection: data.selection,
 	                                });
 	                              },
@@ -215,9 +210,9 @@ class TrialForm extends React.Component {
 	                              label: 'Contact Preference',
 	                            }}
 	                            options={CPREFS}
-	                            errorText={this.state.prefValueError}
+	                            errorText={prefValue.message}
 	                            selection={this.state.prefSelection}
-	                            value={this.state.prefValue}
+	                            value={prefValue.value}
 	                            variant="readonly"
 	                            required
 	                          />
