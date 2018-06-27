@@ -4,6 +4,7 @@ import '../App.css';
 import {COUNTRIES} from '../data/combodata';
 import {PTYPES} from '../data/combodata';
 import {CPREFS} from '../data/combodata';
+import {LANGUAGES} from '../data/combodata';
 import {Trial} from './Trial';
 
 
@@ -25,9 +26,11 @@ class TrialForm extends React.Component {
 	  countryCode: '',
 	  prefValue: '',
 	  phoneValue: '',
+	  langCode: '',
 	  countryCodeError: '',
 	  phoneValueError: '',
 	  prefValueError: '',
+	  langCodeError: '',
 
     };
 
@@ -66,7 +69,7 @@ class TrialForm extends React.Component {
     		val = false;
     	}
     	//validation checks on the comboboxes
-    	if (key === 'phoneValue' || key === 'prefValue' || key === 'countryCode'){
+    	if (key === 'phoneValue' || key === 'prefValue' || key === 'countryCode' || 'langCode'){
     		if (state[key] === '') {
     			var m = key+'Error';
     			state[m] = 'This is a required field.';
@@ -89,7 +92,8 @@ class TrialForm extends React.Component {
     							this.state.uname.value, 
     							this.state.countryCode, 
     							this.state.prefValue, 
-    							this.state.phoneValue);
+    							this.state.phoneValue,
+    							this.state.langCode);
 
     	if (!myTrial){
     		return;
@@ -282,6 +286,38 @@ class TrialForm extends React.Component {
 	                            value={this.state.countryValue}
 	                            variant="readonly"
 	                            errorText={this.state.countryCodeError}
+	                            required
+	                          />
+	                        </div>
+	                        <div className="slds-form-element slds-m-bottom--large">
+	                          <Combobox
+	                            id="language"
+	                            events={{
+	                              onSelect: (event, data) => {
+	                                if (this.props.action) {
+	                                  this.props.action('onSelect')(
+	                                    event,
+	                                    ...Object.keys(data).map((key) => data[key])
+	                                  );
+	                                } else if (console) {
+	                                  console.log('onSelect', event, data);
+	                                }
+	                                this.setState({
+	                                  langValue: data.selection[0].label,
+	                                  langSelection: data.selection,
+	                                  langCode: data.selection[0].id,
+	                                  langCodeError:'',
+	                                });
+	                              },
+	                            }}
+	                            labels={{
+	                              label: 'Preferred Language',
+	                            }}
+	                            options={LANGUAGES}
+	                            selection={this.state.langSelection}
+	                            value={this.state.langValue}
+	                            variant="readonly"
+	                            errorText={this.state.langCodeError}
 	                            required
 	                          />
 	                        </div>

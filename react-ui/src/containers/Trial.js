@@ -1,5 +1,5 @@
 export class Trial {
-  constructor(firstName, lastName, email, company, phone, uname, countryCode, prefValue, phoneValue) {
+  constructor(firstName, lastName, email, company, phone, uname, countryCode, prefValue, phoneValue, langCode) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
@@ -9,5 +9,6 @@ export class Trial {
     this.countryCode = countryCode;
     this.prefValue = prefValue;
     this.phoneValue = phoneValue;
+    this.langCode = langCode;
   }
 }

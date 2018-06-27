@@ -30,6 +30,28 @@ export const CPREFS = [
   },
 ];
 
+export const LANGUAGES = [
+{ id: 'zh_CN', label: 'Chinese (Simplified)', value: 'zh_CN',},
+{ id: 'zh_TW', label: 'Chinese (Traditional)', value: 'zh_TW',},
+{ id: 'da', label: 'Danish', value: 'da',},
+{ id: 'nl_NL', label: 'Dutch', value: 'nl_NL',},
+{ id: 'en_US', label: 'English', value: 'en_US',},
+{ id: 'fi', label: 'Finnish', value: 'fi',},
+{ id: 'fr', label: 'French', value: 'fr',},
+{ id: 'de', label: 'German', value: 'de',},
+{ id: 'it', label: 'Italian', value: 'it',},
+{ id: 'ja', label: 'Japanese', value: 'ja',},
+{ id: 'ko', label: 'Korean', value: 'ko',},
+{ id: 'no', label: 'Norwegian', value: 'no',},
+{ id: 'pt_BR', label: 'Portuguese (Brazil)', value: 'pt_BR',},
+{ id: 'ru', label: 'Russian', value: 'ru',},
+{ id: 'es', label: 'Spanish', value: 'es',},
+{ id: 'es_MX', label: 'Spanish (Mexico)', value: 'es_MX',},
+{ id: 'sv', label: 'Swedish', value: 'sv',},
+{ id: 'th', label: 'Thai', value: 'th',},
+];
+
+
 export const COUNTRIES = [
 { id: 'AF', label: 'Afghanistan', value: 'AF',},
 { id: 'AX', label: 'Aland Islands', value: 'AX',},

@@ -97,7 +97,7 @@ if (cluster.isMaster) {
             //trial.set('PhonePreference', req.body.phoneValue);
             trial.set('TemplateId', templateId);
 
-            trial.set('PreferredLanguage', 'en_US');
+            trial.set('PreferredLanguage', req.body.langCode);
 
             org.insert({ sobject: trial }, (err) => {
               if(err) {
