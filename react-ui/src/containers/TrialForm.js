@@ -62,7 +62,6 @@ class TrialForm extends React.Component {
     var state = this.state;
     var val = true;
 
-    console.log('prefValue=',this.state.prefValue);
 
     Object.keys(state).map(key => {
     	if(state[key].value == ''){
@@ -78,15 +77,15 @@ class TrialForm extends React.Component {
     } else {
 
 
-    	let myTrial = new Trial(this.state.firstName, 
-    								 this.state.lastName, 
-    								 this.state.email, 
-    								 this.state.company, 
-    								 this.state.phone, 
-    								 this.state.uname, 
-    								 this.state.countryCode, 
-    								 this.state.prefValue, 
-    								 this.state.phoneValue);
+    	let myTrial = new Trial(state[firstName].value, 
+    							state[lastName].value, 
+    						    state[email].value, 
+    							state[company].value, 
+    							state[phone].value, 
+    							state[uname].value, 
+    							state[countryCode], 
+    							state[prefValue], 
+    							state[phoneValue]);
 
     	if (!myTrial){
     		return;
@@ -200,6 +199,7 @@ class TrialForm extends React.Component {
 	                                this.setState({
 	                                  prefValue: data.selection[0].id,
 	                                  prefSelection: data.selection,
+	                                  prefValueError: '',
 	                                });
 	                              },
 	                            }}
@@ -207,9 +207,9 @@ class TrialForm extends React.Component {
 	                              label: 'Contact Preference',
 	                            }}
 	                            options={CPREFS}
-	                            errorText={prefValue.message}
+	                            errorText={this.state.prefValueError}
 	                            selection={this.state.prefSelection}
-	                            value={prefValue.value}
+	                            value={this.state.prefValue}
 	                            variant="readonly"
 	                            required
 	                          />
@@ -230,6 +230,7 @@ class TrialForm extends React.Component {
 	                                this.setState({
 	                                  phoneValue: data.selection[0].id,
 	                                  phoneSelection: data.selection,
+	                                  phoneValeuError:'',
 	                                });
 	                              },
 	                            }}
@@ -261,6 +262,7 @@ class TrialForm extends React.Component {
 	                                  countryValue: data.selection[0].label,
 	                                  countrySelection: data.selection,
 	                                  countryCode: data.selection[0].id,
+	                                  countryCodeError: '',
 	                                });
 	                              },
 	                            }}
