@@ -74,47 +74,45 @@ if (cluster.isMaster) {
             console.log("- Instance URL: %s", org.oauth.instance_url);
             // console.log("- OAuth Token: %s", org.oauth.access_token);
             org.authenticated = true;
+
+            console.log('body= ',req.body);
+
+
+            if (!req.body) {
+              res.status(400).send('Missing query parameter.');
+              console.log('error: missing param');
+              return;
+            }
+
+
+            let trial = force.createSObject('SignupRequest');
+            trial.set('FirstName', req.body.firstName);
+            trial.set('LastName', req.body.lastName);
+            trial.set('SignupEmail', req.body.email);
+            trial.set('Company', req.body.company);
+            //trial.set('Phone', req.body.phone);
+            trial.set('Username', req.body.uname);
+            trial.set('Country', req.body.countryCode);
+            //trial.set('ContactPreference', req.body.prefValue);
+            //trial.set('PhonePreference', req.body.phoneValue);
+            trial.set('TemplateId', templateId);
+
+            trial.set('PreferredLanguage', 'en_US');
+
+            org.insert({ sobject: trial }, (err) => {
+              if(err) {
+                 console.error(err);
+                 process.exit(1);
+              }
+              else {
+                 console.log('Trial Inserted');
+              }
+            })
+
+            res.status(200).send(JSON.stringify({"data":"Success"}));
         }
-        
+                
     });
-
-    //if(!org.authenticated) { return; }
-
-    console.log('body= ',req.body);
-
-
-    if (!req.body) {
-      res.status(400).send('Missing query parameter.');
-      console.log('error: missing param');
-      return;
-    }
-
-
-    let trial = force.createSObject('SignupRequest');
-    trial.set('FirstName', req.body.firstName);
-    trial.set('LastName', req.body.lastName);
-    trial.set('SignupEmail', req.body.email);
-    trial.set('Company', req.body.company);
-    //trial.set('Phone', req.body.phone);
-    trial.set('Username', req.body.uname);
-    trial.set('Country', req.body.countryCode);
-    //trial.set('ContactPreference', req.body.prefValue);
-    //trial.set('PhonePreference', req.body.phoneValue);
-    trial.set('TemplateId', templateId);
-
-    trial.set('PreferredLanguage', 'en_US');
-
-    //org.insert({ sobject: trial }, (err) => {
-    //    if(err) {
-    //       console.error(err);
-    //        process.exit(1);
-    //    }
-    //    else {
-    //        console.log('Trial Inserted');
-    //    }
-    //})
-
-    res.status(200).send(JSON.stringify({"data":"Success"}));
     
 
   });
