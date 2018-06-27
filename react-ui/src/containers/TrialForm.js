@@ -20,15 +20,18 @@ class TrialForm extends React.Component {
 
     this.state = {
 
-      firstName: {value:'', isValid:true, message:''},
-	  lastName: {value:'', isValid:true, message:''},
-	  email: {value:'', isValid:true, message:''},
-	  company: {value:'', isValid:true, message:''},
-	  phone: {value:'', isValid:true, message:''},
-	  uname: {value:'', isValid:true, message:''},
-	  countryCode: {value:'', isValid:true, message:''},
-	  prefValue: {value:'', isValid:true, message:''},
-	  phoneValue: {value:'', isValid:true, message:''},
+      firstName: {value:'', message:''},
+	  lastName: {value:'', message:''},
+	  email: {value:'', message:''},
+	  company: {value:'', message:''},
+	  phone: {value:'', message:''},
+	  uname: {value:'', message:''},
+	  countryCode: '',
+	  prefValue: '',
+	  phoneValue: '',
+	  countryCodeError: '',
+	  phoneValueError: '',
+	  prefValueError: '',
 
 
     };
@@ -230,7 +233,7 @@ class TrialForm extends React.Component {
 	                                this.setState({
 	                                  phoneValue: data.selection[0].id,
 	                                  phoneSelection: data.selection,
-	                                  phoneValeuError:'',
+	                                  phoneValueError:'',
 	                                });
 	                              },
 	                            }}
