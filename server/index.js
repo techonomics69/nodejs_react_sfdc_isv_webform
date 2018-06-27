@@ -1,11 +1,12 @@
 const httpClient = require('request');
-const express = require('express');
+const express = require('express');  //middleware
 const path = require('path');
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 const url = require('url');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser'); //parses request into a json body object
 
+//heroku environmental variables
 const username = process.env.SALESFORCE_USERNAME;
 const password = process.env.SALESFORCE_PASSWORD;
 const securityToken = process.env.SALESFORCE_SECURITY_TOKEN;
@@ -15,6 +16,7 @@ const templateId = process.env.TRIALFORCE_TEMPLATE_ID;
 if (!securityToken) { missing("SALESFORCE_SECURITY_TOKEN"); }
 if (!username) { missing("SALESFORCE_USERNAME"); }
 if (!password) { missing("SALESFORCE_PASSWORD"); }
+if (!templateId) { missing("TRIALFORCE_TEMPLATE_ID"); }
 
 // Multi-process to utilize all CPU cores.
 if (cluster.isMaster) {
@@ -30,11 +32,15 @@ if (cluster.isMaster) {
   });
 
 } else {
+
+  //create express app
   const app = express();
 
+  //exit if any of the environmental variables are missing
   global.exit = function exit(code, msg) { console.log(`ERROR: ${msg}`); process.exit(code || 1); }
   global.missing = function missing(variable) { exit(1, `${variable} environment variable required.`); }
 
+  //create the connection to the salesforce TMO org
   let { org, force } = require('./salesforce');
 
 
@@ -60,9 +66,10 @@ if (cluster.isMaster) {
     res.send('{"message":"Hello from the custom server!"}');
   });
 
-  // Create a Trial.
+  // Create a Trial endpoint.
   app.post('/newtrial', function(req, res) {
 
+    //Authenticate into the Salesforce org.
     console.log("*** Attempting Salesforce authentication...");
     org.authenticate({ username, password, securityToken }, (err) => {
         if (err) {
@@ -75,16 +82,14 @@ if (cluster.isMaster) {
             // console.log("- OAuth Token: %s", org.oauth.access_token);
             org.authenticated = true;
 
-            console.log('body= ',req.body);
-
-
+            //if the body of the request sent from react is empty or null, exit
             if (!req.body) {
-              res.status(400).send('Missing query parameter.');
-              console.log('error: missing param');
+              res.status(400).send('Missing Trial Information.');
+              console.log('error: missing trial param');
               return;
             }
 
-
+            //create an sobject container in nforce to insert the SignupRequest record
             let trial = force.createSObject('SignupRequest');
             trial.set('FirstName', req.body.firstName);
             trial.set('LastName', req.body.lastName);
@@ -99,17 +104,19 @@ if (cluster.isMaster) {
 
             trial.set('PreferredLanguage', req.body.langCode);
 
+            //perform the insert of the trial record into the SignupRequest object
             org.insert({ sobject: trial }, (err) => {
               if(err) {
                  console.error(err);
                  process.exit(1);
+                 res.status(400).send(JSON.stringify({"data":err}));
               }
               else {
                  console.log('Trial Inserted');
+                 res.status(200).send(JSON.stringify({"data":"Success"}));
               }
             })
-
-            res.status(200).send(JSON.stringify({"data":"Success"}));
+            
         }
                 
     });

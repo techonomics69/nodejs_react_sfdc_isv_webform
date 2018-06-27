@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
+
+//Lightning Design System React Components
 import { Button, IconSettings, Input, Combobox } from '@salesforce/design-system-react';
 import '../App.css';
+
+//below imports is the data to populate the comboboxes
 import {COUNTRIES} from '../data/combodata';
 import {PTYPES} from '../data/combodata';
 import {CPREFS} from '../data/combodata';
 import {LANGUAGES} from '../data/combodata';
+
+//JS object to hold the form information and pass between components.
 import {Trial} from './Trial';
 
 
 
-
+//Form component to capture the trial information
 class TrialForm extends React.Component {
 
+  //initialize all the variables and the event functions in state 	
   constructor(props) {
     super(props);
 
@@ -37,15 +44,16 @@ class TrialForm extends React.Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log('redirect:',this.state.redirect);
 
   }
 
+  //called when input is entered into a field by the onChange event
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
+    //set the state with the value passed in from the onChange method
     var state = this.state;
     state[name].value = value;
     state[name].message = '';
@@ -55,6 +63,7 @@ class TrialForm extends React.Component {
 
   }
 
+  //submits the form data to the handlesubmit function in App.js
   handleSubmit(event){
     event.preventDefault();
 
@@ -68,7 +77,7 @@ class TrialForm extends React.Component {
     		state[key].message = 'This is a required field.';
     		val = false;
     	}
-    	//validation checks on the comboboxes
+    	//validation checks on the comboboxes (checks to see if any are empty)
     	if (key === 'phoneValue' || key === 'prefValue' || key === 'countryCode' || key === 'langCode'){
     		if (state[key] === '') {
     			var m = key+'Error';
@@ -81,6 +90,7 @@ class TrialForm extends React.Component {
 
     this.setState(state);
 
+    //if the validation boolean is true - then submit the trail form info to node, if not, exit and alert the user
     if (val) {
 
     	//create a trial js object to pass to the nodejs app
@@ -108,6 +118,7 @@ class TrialForm extends React.Component {
 
   }
 
+  //renders the elements on the screen
   render() {
   	
   	var {firstName, lastName, email, company, phone, uname} = this.state;
