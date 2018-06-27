@@ -6,8 +6,15 @@ const numCPUs = require('os').cpus().length;
 const url = require('url');
 const bodyParser = require('body-parser');
 
+const username = process.env.SALESFORCE_USERNAME;
+const password = process.env.SALESFORCE_PASSWORD;
+const securityToken = process.env.SALESFORCE_SECURITY_TOKEN;
 const PORT = process.env.PORT || 5000;
 const templateId = process.env.TRIALFORCE_TEMPLATE_ID;
+
+if (!securityToken) { missing("SALESFORCE_SECURITY_TOKEN"); }
+if (!username) { missing("SALESFORCE_USERNAME"); }
+if (!password) { missing("SALESFORCE_PASSWORD"); }
 
 // Multi-process to utilize all CPU cores.
 if (cluster.isMaster) {
@@ -55,7 +62,23 @@ if (cluster.isMaster) {
 
   // Create a Trial.
   app.post('/newtrial', function(req, res) {
-    if(!org.authenticated) { return; }
+
+    console.log("*** Attempting Salesforce authentication...");
+    org.authenticate({ username, password, securityToken }, (err) => {
+        if (err) {
+            console.error("*** Salesforce authentication error:");
+            console.error(err);
+            process.exit(1);
+        } else {
+            console.log("*** Salesforce authentication successful.");
+            console.log("- Instance URL: %s", org.oauth.instance_url);
+            // console.log("- OAuth Token: %s", org.oauth.access_token);
+            org.authenticated = true;
+        }
+        
+    });
+
+    //if(!org.authenticated) { return; }
 
     console.log('body= ',req.body);
 
