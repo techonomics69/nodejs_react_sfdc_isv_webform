@@ -17,7 +17,7 @@ class TrialSubmitted extends React.Component {
   render() {
 
     return (
-		<div className="slds-p-around--large">   
+		<div className="slds-p-around--large" align=center>   
 	    	<h1 className="App-body">{this.props.result}</h1>  
 	    </div>
 	);
