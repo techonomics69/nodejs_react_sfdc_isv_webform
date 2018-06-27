@@ -77,15 +77,15 @@ class TrialForm extends React.Component {
     } else {
 
 
-    	let myTrial = new Trial(state[firstName].value, 
-    							state[lastName].value, 
-    						    state[email].value, 
-    							state[company].value, 
-    							state[phone].value, 
-    							state[uname].value, 
-    							state[countryCode], 
-    							state[prefValue], 
-    							state[phoneValue]);
+    	let myTrial = new Trial(this.state.firstName.value, 
+    							this.state.lastName.value, 
+    						    this.state.email.value, 
+    							this.state.company.value, 
+    							this.state.phone.value, 
+    							this.state.uname.value, 
+    							this.state.countryCode, 
+    							this.state.prefValue, 
+    							this.state.phoneValue);
 
     	if (!myTrial){
     		return;
