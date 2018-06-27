@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { Button, IconSettings, Input, Combobox } from '@salesforce/design-system-react';
-import {BrowserRouter as Router, Route, Link, Switch, Redirect} from 'react-router-dom';
-import logo from '../logo.svg';
 import '../App.css';
 import {COUNTRIES} from '../data/combodata';
 import {PTYPES} from '../data/combodata';
 import {CPREFS} from '../data/combodata';
 import {Trial} from './Trial';
-
-var $ = require('jquery');
 
 
 
@@ -35,7 +31,6 @@ class TrialForm extends React.Component {
 
     };
 
-    let newTrial = new Trial('','','','','','','','','');
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -47,7 +42,6 @@ class TrialForm extends React.Component {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    var e = name+'Error';
 
     var state = this.state;
     state[name].value = value;
@@ -67,12 +61,13 @@ class TrialForm extends React.Component {
 
     Object.keys(state).map(key => {
     	//validation check on input fields (checks to see if they are empty)
-    	if(state[key].value == ''){
+    	if(state[key].value === ''){
     		state[key].message = 'This is a required field.';
     		val = false;
     	}
-    	if (key == 'phoneValue' || key == 'prefValue' || key == 'countryCode'){
-    		if (state[key] == '') {
+    	//validation checks on the comboboxes
+    	if (key === 'phoneValue' || key === 'prefValue' || key === 'countryCode'){
+    		if (state[key] === '') {
     			var m = key+'Error';
     			state[m] = 'This is a required field.';
     			val = false;
@@ -80,16 +75,12 @@ class TrialForm extends React.Component {
     	}
     });
 
-    //validation checks on the comboboxes
-
 
     this.setState(state);
 
-    if (!val) {
-    	console.log('validation error');
-    } else {
+    if (val) {
 
-
+    	//create a trial js object to pass to the nodejs app
     	let myTrial = new Trial(this.state.firstName.value, 
     							this.state.lastName.value, 
     						    this.state.email.value, 
@@ -104,14 +95,18 @@ class TrialForm extends React.Component {
     		return;
     	}
 
+    	//bind the trial object to the button in App.js
     	this.props.onExecuteQuery({newTrial: myTrial});
+    	
+    } else {
+    	console.log('validation error');
 	}
 
   }
 
   render() {
   	
-  	var {firstName, lastName, email, company, phone, uname, countryCode, prefValue, phoneValue} = this.state;
+  	var {firstName, lastName, email, company, phone, uname} = this.state;
 
     return (
 		<div>
