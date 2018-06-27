@@ -69,7 +69,7 @@ class TrialForm extends React.Component {
     		val = false;
     	}
     	//validation checks on the comboboxes
-    	if (key === 'phoneValue' || key === 'prefValue' || key === 'countryCode' || 'langCode'){
+    	if (key === 'phoneValue' || key === 'prefValue' || key === 'countryCode' || key === 'langCode'){
     		if (state[key] === '') {
     			var m = key+'Error';
     			state[m] = 'This is a required field.';
