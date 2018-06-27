@@ -33,7 +33,6 @@ class TrialForm extends React.Component {
 	  phoneValueError: '',
 	  prefValueError: '',
 
-
     };
 
     let newTrial = new Trial('','','','','','','','','');
@@ -67,11 +66,22 @@ class TrialForm extends React.Component {
 
 
     Object.keys(state).map(key => {
+    	//validation check on input fields (checks to see if they are empty)
     	if(state[key].value == ''){
-    		state[key].message = 'This is a required field.'
+    		state[key].message = 'This is a required field.';
     		val = false;
     	}
+    	if (key == 'phoneValue' || key == 'prefValue' || key == 'countryCode'){
+    		if (state[key] == '') {
+    			var m = key+'Error';
+    			state[m] = 'This is a required field.';
+    			val = false;
+    		}
+    	}
     });
+
+    //validation checks on the comboboxes
+
 
     this.setState(state);
 
